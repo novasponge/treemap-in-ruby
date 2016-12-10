@@ -13,7 +13,7 @@
 
 ### Left Leaning Red Black BST (LLBBST)
 
-* Guaranteed O(log(n)) runtime complexity for put, get and delete in all cases by dynamically balancing BST.
+* Guaranteed O(log(n)) runtime complexity for put, get and delete in all cases by dynamically balancing the tree.
 
 #### Features
 
