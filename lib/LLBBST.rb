@@ -11,6 +11,7 @@ class LLBBST
     if @root.key.nil?
       @root.key = key
       @root.val = val
+      return @root
     end
     @root = put_rec(key, val, @root)
     @root.color = BLACK
