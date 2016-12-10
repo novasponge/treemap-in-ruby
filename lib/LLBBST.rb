@@ -22,11 +22,34 @@ class LLBBST
   end
 
   def ceiling_key(key)
-    node = ceiling_entry
-    if node.nil?
+    hash = ceiling_entry(key)
+    if hash.nil?
       return nil
     else
-      return node.key
+      return hash.keys.first
+    end
+  end
+
+  def floor_entry(key)
+    node = find(key, @root)
+    if node.nil?
+      node = lower_key_rec(key, @root)
+      if node.nil?
+        return nil
+      else
+        return {node.key => node.val}
+      end
+    else
+      return {node.key => node.val}
+    end
+  end
+
+  def floor_key(key)
+    hash = floor_entry(key)
+    if hash.nil?
+      return nil
+    else
+      return hash.keys.first
     end
   end
 

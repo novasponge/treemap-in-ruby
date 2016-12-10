@@ -29,8 +29,10 @@
 * max() Returns the max key.
 * higher_key(key) Returns the least key strictly greater than the given key, or nil if there is no such key.
 * lower_key(key) Returns the greatest key strictly less than the given key, or nil if there is no such key.
-* ceiling_entry Returns a key-value mapping associated with the least key greater than or equal to the given key, or nil if there is no such key.
+* ceiling_entry Returns a key-value hash mapping associated with the least key greater than or equal to the given key, or nil if there is no such key.
 * ceiling_key(key) Returns the least key greater than or equal to the given key, or nil if there is no such key.
+* floor_entry(key) Returns a key-value hash mapping associated with the greatest key less than or equal to the given key, or nil if there is no such key.
+* floor_key(key) Returns the greatest key less than or equal to the given key, or nil if there is no such key.
 
 ### How to use
 
