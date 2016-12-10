@@ -7,6 +7,29 @@ class LLBBST
     @root = Node.new(key, val, RED)
   end
 
+  def ceiling_entry(key)
+    node = find(key, @root)
+    if node.nil?
+      node = higher_key_rec(key, @root)
+      if node.nil?
+        return nil
+      else
+        return {node.key => node.val}
+      end
+    else
+      return {node.key => node.val}
+    end
+  end
+
+  def ceiling_key(key)
+    node = ceiling_entry
+    if node.nil?
+      return nil
+    else
+      return node.key
+    end
+  end
+
   def put(key, val)
     if @root.key.nil?
       @root.key = key
@@ -80,11 +103,21 @@ class LLBBST
   end
 
   def higher_key(key)
-    higher_key_rec(key, @root)
+    node = higher_key_rec(key, @root)
+    if node.nil?
+      return nil
+    else
+      return node.key
+    end
   end
 
   def lower_key(key)
-    lower_key_rec(key, @root)
+    node = lower_key_rec(key, @root)
+    if node.nil?
+      return nil
+    else
+      return node.key
+    end
   end
 
   private
@@ -254,7 +287,7 @@ class LLBBST
       if higher_node.nil?
         return nil
       else
-        return higher_node.key
+        return higher_node
       end
     end
 
@@ -266,7 +299,7 @@ class LLBBST
 
     if found.class == NilClass
       if key > node.key
-        return node.key
+        return node
       else
         return found
       end
@@ -283,7 +316,7 @@ class LLBBST
       if lower_node.nil?
         return nil
       else
-        return lower_node.key
+        return lower_node
       end
     end
 
@@ -295,7 +328,7 @@ class LLBBST
 
     if found.class == NilClass
       if key < node.key
-        return node.key
+        return node
       else
         return found
       end
