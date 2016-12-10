@@ -43,7 +43,7 @@
 #### BST
 
 ```ruby
-require_relative 'BST'
+require_relative './lib/BST'
 
 data = some_data_in_an_array
 
