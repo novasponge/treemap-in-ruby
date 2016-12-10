@@ -6,9 +6,10 @@
 
 #### Features
 
-* put(key, val) Insert a key with value.
-* get(key) Returns the value of the key or nil if there is no such key.
-* del(key) Delete a key.
+* put(key, val) Inserts a key with value.
+* get_key(key) Returns the key or nil if there is no such key.
+* get_val(key) Returns the value or nil if there is no such key.
+* del(key) Deletes a key.
 
 ### Left Leaning Red Black BST (LLBBST)
 
@@ -17,7 +18,8 @@
 #### Features
 
 * put(key, val) Inserts a key with value.
-* get(key) Returns the value of the key or nil if there is no such key.
+* get_key(key) Returns the key or nil if there is no such key.
+* get_val(key) Returns the value or nil if there is no such key.
 * del(key) Deletes a key.
 * del_min() Deletes min key.
 * del_max() Deletes max key.

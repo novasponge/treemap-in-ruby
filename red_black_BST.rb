@@ -12,8 +12,22 @@ class LLBBST
     @root.color = BLACK
   end
 
-  def get(key)
-    find(key, @root).val
+  def get_key(key)
+    node = find(key, @root)
+    if node
+      node.key
+    else
+      nil
+    end
+  end
+
+  def get_val(key)
+    node = find(key, @root)
+    if node
+      node.val
+    else
+      nil
+    end
   end
 
   def del(key)
