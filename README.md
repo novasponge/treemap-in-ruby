@@ -58,7 +58,7 @@ end
 #### LLBBST
 
 ```ruby
-require_relative 'LLBBST'
+require_relative './lib/LLBBST'
 
 data = some_data_in_an_array
 
