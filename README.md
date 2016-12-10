@@ -1,9 +1,60 @@
 ## BST and Left Leaning Red Black BST in Ruby
 
-### Binary Search Tree
+### Binary Search Tree (BST)
 
 * Provides O(log(n)) runtime complexity for put, get, and delete in average cases and O(n) in worst case.  
 
-### Left Leaning Red Black BST
+#### Features
 
-* Guaranteed O(log(n)) runtime complexity for put, get and delete in all cases by dynamically balancing BST for put, get, and delete.
+* put(key, val) Insert a key with value.
+* get(key) Returns the value of the key or nil if there is no such key.
+* del(key) Delete a key.
+
+### Left Leaning Red Black BST (LLBBST)
+
+* Guaranteed O(log(n)) runtime complexity for put, get and delete in all cases by dynamically balancing BST.
+
+#### Features
+
+* put(key, val) Inserts a key with value.
+* get(key) Returns the value of the key or nil if there is no such key.
+* del(key) Deletes a key.
+* del_min() Deletes min key.
+* del_max() Deletes max key.
+* min() Returns the min key.
+* max() Returns the max key.
+* higher_key(key) Returns the least key strictly greater than the given key, or nil if there is no such key.
+* lower_key(key) Returns the greatest key strictly less than the given key, or nil if there is no such key.
+
+### How to use
+
+* Clone this repo into your project root directory.
+* require it
+
+#### BST
+
+```ruby
+require_relative 'BST'
+
+data = some_data_in_an_array
+
+tree = BST.new(data[0], true)
+
+data.each do |entry|
+  BST.put(entry)
+end
+```
+
+#### LLBBST
+
+```ruby
+require_relative 'LLBBST'
+
+data = some_data_in_an_array
+
+tree = LLBBST.new(data[0], true)
+
+data.each do |entry|
+  LLBBST.put(entry)
+end
+```

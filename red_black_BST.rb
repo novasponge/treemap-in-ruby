@@ -1,6 +1,4 @@
-require 'byebug'
-
-class BST
+class LLBBST
   RED = true
   BLACK = false
   attr_reader :root
@@ -55,11 +53,19 @@ class BST
   end
 
   def min()
-    return min_rec(@root)
+    min_rec(@root)
   end
 
   def max()
-    return max_rec(@root)
+    max_rec(@root)
+  end
+
+  def higher_key(key)
+    higher_key_rec(key, @root)
+  end
+
+  def lower_key(key)
+    lower_key_rec(key, @root)
   end
 
   private
@@ -94,6 +100,7 @@ class BST
   end
 
   def min_rec(node)
+    return nil if node.nil?
     if node.left
       min_rec(node.left)
     else
@@ -102,6 +109,7 @@ class BST
   end
 
   def max_rec(node)
+    return nil if node.nil?
     if node.right
       max_rec(node.right)
     else
@@ -219,6 +227,63 @@ class BST
     return node.color == RED
   end
 
+  def lower_key_rec(key, node)
+    return nil if node.nil?
+
+    if key == node.key
+      higher_node = max_rec(node.left)
+      if higher_node.nil?
+        return nil
+      else
+        return higher_node.key
+      end
+    end
+
+    if key >= node.key
+      found = lower_key_rec(key, node.right)
+    elsif key < node.key
+      found = lower_key_rec(key, node.left)
+    end
+
+    if found.class == NilClass
+      if key > node.key
+        return node.key
+      else
+        return found
+      end
+    else
+      return found
+    end
+  end
+
+  def higher_key_rec(key, node)
+    return nil if node.nil?
+
+    if key == node.key
+      lower_node = min_rec(node.right)
+      if lower_node.nil?
+        return nil
+      else
+        return lower_node.key
+      end
+    end
+
+    if key >= node.key
+      found = higher_key_rec(key, node.right)
+    elsif key < node.key
+      found = higher_key_rec(key, node.left)
+    end
+
+    if found.class == NilClass
+      if key < node.key
+        return node.key
+      else
+        return found
+      end
+    else
+      return found
+    end
+  end
 end
 
 class Node

@@ -1,5 +1,3 @@
-require 'byebug'
-
 class BST
 
   attr_reader :root
@@ -20,7 +18,8 @@ class BST
     del_rec(key, @root)
   end
 
-
+  private
+  
   def put_rec(key, val, node)
     return Node.new(key, val) if node.nil?
 
