@@ -33,6 +33,7 @@
 * ceiling_key(key) Returns the least key greater than or equal to the given key, or nil if there is no such key.
 * floor_entry(key) Returns a key-value hash mapping associated with the greatest key less than or equal to the given key, or nil if there is no such key.
 * floor_key(key) Returns the greatest key less than or equal to the given key, or nil if there is no such key.
+* entry_set Returns a Set view of the mappings contained in this map.
 
 ### How to use
 

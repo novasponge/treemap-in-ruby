@@ -1,10 +1,13 @@
+require 'set'
+
 class LLBBST
   RED = true
   BLACK = false
-  attr_reader :root
+  attr_reader :root, :size
 
   def initialize(key = nil, val = nil)
     @root = Node.new(key, val, RED)
+    @size = 0
   end
 
   def ceiling_entry(key)
@@ -42,6 +45,12 @@ class LLBBST
     else
       return {node.key => node.val}
     end
+  end
+
+  def entry_set()
+    set = Set.new
+    iterator(set, @root)
+    return set
   end
 
   def floor_key(key)
@@ -145,21 +154,30 @@ class LLBBST
 
   private
 
-  def put_rec(key, val, node)
-    return Node.new(key, val, RED) if node.nil?
-
-    if key > node.key
-      node.right = put_rec(key, val, node.right)
-    elsif key < node.key
-      node.left = put_rec(key, val, node.left)
-    else
-      node.val = val
+  def del_max_rec(node)
+    if is_red(node.left)
+      node = rotate_right(node)
     end
 
-    node = rotate_left(node) if is_red(node.right) && is_red(node.left) == BLACK
-    node = rotate_right(node) if is_red(node.left) && is_red(node.left.left)
-    flip_color(node) if is_red(node.left) && is_red(node.right)
-    return node
+    return nil if node.right.nil?
+
+    if !is_red(node.right) && !is_red(node.right.left)
+      node = move_red_right(node)
+    end
+
+    node.right = del_max_rec(node.right)
+    return fix_up(node)
+  end
+
+  def del_min_rec(node)
+    return nil if node.left.nil?
+
+    if !is_red(node.left) && !is_red(node.left.left)
+      node = move_red_left(node)
+    end
+
+    node.left = del_min_rec(node.left)
+    return fix_up(node)
   end
 
   def find(key, node)
@@ -172,6 +190,24 @@ class LLBBST
     else
       return find(key, node.right)
     end
+  end
+
+  def iterator(set, node)
+    if node.left.nil? && node.right.nil?
+      set << node
+      return
+    end
+
+    if node.left
+      iterator(set, node.left)
+    end
+
+    set << node
+
+    if node.right
+      iterator(set, node.right)
+    end
+
   end
 
   def min_rec(node)
@@ -221,32 +257,6 @@ class LLBBST
     return fix_up(node)
   end
 
-  def del_max_rec(node)
-    if is_red(node.left)
-      node = rotate_right(node)
-    end
-
-    return nil if node.right.nil?
-
-    if !is_red(node.right) && !is_red(node.right.left)
-      node = move_red_right(node)
-    end
-
-    node.right = del_max_rec(node.right)
-    return fix_up(node)
-  end
-
-  def del_min_rec(node)
-    return nil if node.left.nil?
-
-    if !is_red(node.left) && !is_red(node.left.left)
-      node = move_red_left(node)
-    end
-
-    node.left = del_min_rec(node.left)
-    return fix_up(node)
-  end
-
   def fix_up(node)
     node = rotate_left(node) if is_red(node.right)
     node = rotate_right(node) if is_red(node.left) && is_red(node.left.left)
@@ -270,6 +280,23 @@ class LLBBST
       node = rotate_right(node)
       flip_color(node)
     end
+    return node
+  end
+
+  def put_rec(key, val, node)
+    return Node.new(key, val, RED) if node.nil?
+
+    if key > node.key
+      node.right = put_rec(key, val, node.right)
+    elsif key < node.key
+      node.left = put_rec(key, val, node.left)
+    else
+      node.val = val
+    end
+
+    node = rotate_left(node) if is_red(node.right) && is_red(node.left) == BLACK
+    node = rotate_right(node) if is_red(node.left) && is_red(node.left.left)
+    flip_color(node) if is_red(node.left) && is_red(node.right)
     return node
   end
 
