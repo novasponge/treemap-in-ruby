@@ -13,14 +13,9 @@
 
 ### Left Leaning Red Black BST (LLBBST)
 
-<<<<<<< HEAD
 * Guaranteed O(log(n)) runtime complexity for put, get and delete in all cases by dynamically balancing BST.
 * LLBBST treemap is still under early development.
 * New features will be continuously added in order to support basic treemap functionality.
-
-=======
-* Guaranteed O(log(n)) runtime complexity for put, get and delete in all cases by dynamically balancing the tree.
->>>>>>> fbda3c1457564f30e393bb67471743af05e7bfcb
 
 #### Features
 
