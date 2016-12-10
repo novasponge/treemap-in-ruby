@@ -42,10 +42,11 @@ require_relative 'BST'
 
 data = some_data_in_an_array
 
-tree = BST.new(data[0], true)
+tree = BST.new()
 
-data.each do |entry|
-  BST.put(entry)
+# populate the tree
+data.each do |key|
+  BST.put(key, val)
 end
 ```
 
@@ -56,9 +57,10 @@ require_relative 'LLBBST'
 
 data = some_data_in_an_array
 
-tree = LLBBST.new(data[0], true)
+tree = LLBBST.new()
 
-data.each do |entry|
-  LLBBST.put(entry)
+# populate the tree
+data.each do |key|
+  LLBBST.put(key, val)
 end
 ```

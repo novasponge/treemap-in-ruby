@@ -3,11 +3,15 @@ class LLBBST
   BLACK = false
   attr_reader :root
 
-  def initialize(key, val)
+  def initialize(key = nil, val= nil)
     @root = Node.new(key, val, RED)
   end
 
   def put(key, val)
+    if @root.key.nil?
+      @root.key = key
+      @root.val = val
+    end
     @root = put_rec(key, val, @root)
     @root.color = BLACK
   end
@@ -304,7 +308,7 @@ class Node
 
   attr_accessor :val, :left, :right, :key, :color
 
-  def initialize(key, val, color)
+  def initialize(key = nil, val = nil, color = nil)
     @key = key
     @val = val
     @left = nil
