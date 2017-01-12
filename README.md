@@ -50,8 +50,8 @@ data = some_data_in_an_array
 tree = BST.new()
 
 # populate the tree
-data.each do |key|
-  BST.put(key, val)
+data.each_with_index do |key, idx|
+  BST.put(key, idx)
 end
 ```
 
@@ -65,7 +65,7 @@ data = some_data_in_an_array
 tree = LLBBST.new()
 
 # populate the tree
-data.each do |key|
-  LLBBST.put(key, val)
+data.each_with_index do |key, idx|
+  LLBBST.put(key, idx)
 end
 ```
